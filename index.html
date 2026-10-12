@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- 公開準備ができるまで検索エンジンに載せない。公開時に外すかは README 参照 -->
+<meta name="robots" content="noindex">
+<title>使うAIから、共に働くAIへ｜無料オンラインセミナー</title>
+<meta name="description" content="AIは一応使っている。でも仕事は去年と同じ。何が足りないのか、自分でも言えない。そんな中小企業の経営者の方へ、氏原大貴が約30分の無料オンラインセミナーでお話しします。">
+<!-- OGP（仮置き。URL・画像は公開先が決まってから差し替え） -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="使うAIから、共に働くAIへ｜無料オンラインセミナー">
+<meta property="og:description" content="AIは一応使っている。でも仕事は去年と同じ。AIの進化に追いつけなかった時間の、取り戻し方が見える30分の無料オンラインセミナー。">
+<meta property="og:url" content="https://ujiji0903-hirotaka.github.io/ai-seminar-optin/">
+<meta property="og:image" content="https://ujiji0903-hirotaka.github.io/ai-seminar-optin/assets/ogp.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0A0F18">
+<!-- 書体: 見出し Shippori Mincho B1（700/800）、本文 Noto Serif JP（400/500）。和文は unicode-range 分割配信 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@700;800&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  /* JSが動く環境だけ html.js を付ける（節の出現と固定バーの前提）。無ければ全節が最初から見え、バーは出ない */
+  if ('IntersectionObserver' in window) document.documentElement.classList.add('js');
+</script>
+<style>
+  /* 案A-2「藍墨と金」: 暗い藍墨の地 × 琥珀の金（マット）× 明朝。装飾は 罫・点線・ブラケット・丸数字・円 の5語彙だけ */
+  :root {
+    --bg: #0A0F18;           /* 墨（地） */
+    --surface: #111925;      /* 墨（面） */
+    --line-dark: #1D2838;    /* 墨（罫） */
+    --gold: #D6A65C;         /* 琥珀の金 対 地 約8.5:1 */
+    --gold-hover: #E6BC78;
+    --gold-line: rgba(214,166,92,.6);
+    --gold-dot: rgba(214,166,92,.5);
+    --gold-faint: rgba(214,166,92,.25);
+    --gold-bracket: rgba(214,166,92,.8);
+    --ivory: #EDEBE6;        /* 象牙 対 地 約16:1 */
+    --ivory-sub: #A9B2BF;    /* 象牙（補足） 対 地 約9:1 */
+    --serif-display: "Shippori Mincho B1", "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    --serif-text: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    --ease-out: cubic-bezier(.2,.7,.2,1);
+    --bk: 28px;              /* コーナーブラケットの一辺 */
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-padding-bottom: 80px; background: var(--bg); }
+  body {
+    margin: 0;
+    overflow-x: clip;
+    background: var(--bg);
+    color: var(--ivory);
+    font-family: var(--serif-text);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.9;
+    letter-spacing: .02em;
+    word-break: auto-phrase;
+    text-wrap: pretty;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body.has-bar { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
+  img { max-width: 100%; height: auto; }
+  p { margin: 0 0 1.2em; }
+  p:last-child { margin-bottom: 0; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+  .wrap--wide { max-width: 880px; }
+  .sub { color: var(--ivory-sub); font-size: 15px; line-height: 1.8; font-weight: 400; }
+
+  /* 節: 地 → 面 → 地 を交互。面の帯は上下に金の細罫 */
+  .sec { padding: 64px 0; }
+  .sec--surface { background: var(--surface); border-top: 1px solid var(--gold-faint); border-bottom: 1px solid var(--gold-faint); }
+
+  h2 {
+    font-family: var(--serif-display); font-weight: 700;
+    font-size: clamp(1.75rem, 7.5vw, 2.5rem); line-height: 1.4; letter-spacing: .04em;
+    text-align: center; margin: 0 0 40px; text-wrap: balance;
+  }
+  h2::after {
+    content: ""; display: block; width: 48px; height: 1px;
+    background: var(--gold); margin: 16px auto 0;
+  }
+  h3 {
+    font-family: var(--serif-display); font-weight: 700;
+    font-size: 19px; line-height: 1.6; letter-spacing: .03em; margin: 0 0 8px;
+  }
+
+  /* 行頭「・」を金茶にした箇条 */
+  .dots { list-style: none; margin: 12px 0 0; padding: 0; }
+  .dots li { position: relative; padding-left: 1.1em; }
+  .dots li + li { margin-top: 4px; }
+  .dots li::before { content: "・"; position: absolute; left: -.15em; top: 0; color: var(--gold); }
+
+  /* コーナーブラケット: 親(position:relative)の ::before/::after で上2つ、.bk の ::before/::after で下2つ */
+  .bracketed { position: relative; }
+  .bracketed::before, .bracketed::after, .bk::before, .bk::after {
+    content: ""; position: absolute; width: var(--bk); height: var(--bk);
+    border: 1px solid var(--gold-bracket); pointer-events: none;
+  }
+  .bracketed::before { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+  .bracketed::after  { top: 0; right: 0; border-left: 0; border-bottom: 0; }
+  .bk::before { bottom: 0; left: 0; border-right: 0; border-top: 0; }
+  .bk::after  { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+  .bk { position: absolute; inset: 0; pointer-events: none; }
+
+  /* ===== 背景画像の差し込み（assets/hero-*.webp）=====
+     画像は読み込みに成功したときだけ見せる（onload で section に .has-bg）。
+     ファイルが無いときは onerror で picture ごと外れ、CSSグラデの地のまま完成。 */
+  .hero-bg { position: absolute; inset: 0; z-index: 0; margin: 0; visibility: hidden; }
+  .hero-bg img { width: 100%; height: 100%; max-width: 100%; object-fit: cover; object-position: center top; display: block; filter: brightness(1.18) saturate(1.12) contrast(1.05); }
+  .has-bg > .hero-bg { visibility: visible; }
+  .hero-shade { position: absolute; inset: 0; z-index: 1; display: none; pointer-events: none; }
+  .has-bg > .hero-shade { display: block; }
+
+  /* ===== 1. ファーストビュー ===== */
+  .hero {
+    position: relative; isolation: isolate; overflow: hidden;
+    background: radial-gradient(120% 70% at 50% 0%, #14202F 0%, #0A0F18 60%);
+  }
+  /* 画像が無い間だけ、ごく薄い紙の粒子（CSSのみ） */
+  .hero:not(.has-bg)::before, .closing:not(.has-bg)::before {
+    content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .06;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .hero > .hero-shade {
+    background: linear-gradient(180deg, rgba(10,15,24,.10) 0, rgba(10,15,24,.42) 120px, rgba(10,15,24,.68) 55%, rgba(10,15,24,.90) 85%, #0A0F18 100%);
+  }
+  /* PCは文字の列が中央に寄るので、暗幕を中央だけ濃くして両脇の光の筋を見せる（スマホは全幅が文字域のため従来どおり） */
+  @media (min-width: 900px) {
+    .hero > .hero-shade {
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(10,15,24,.34) 0, rgba(10,15,24,.34) 25%, rgba(10,15,24,0) 62%),
+        linear-gradient(180deg, rgba(10,15,24,.04) 0, rgba(10,15,24,.24) 120px, rgba(10,15,24,.52) 55%, rgba(10,15,24,.84) 88%, #0A0F18 100%);
+    }
+  }
+  .frame { position: relative; z-index: 2; margin: 12px; padding: 72px 8px 40px; }
+  @media (min-width: 640px) { .frame { padding-top: 96px; } }
+  .wrap--hero { max-width: 880px; margin: 0 auto; padding: 0 12px; text-align: center; }
+
+  .label {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin: 0 0 24px; font-size: 13px; line-height: 1.6; letter-spacing: .2em;
+    color: var(--gold); font-weight: 500;
+  }
+  .label::before, .label::after { content: ""; flex: 0 0 20px; height: 1px; background: var(--gold); }
+  .worry {
+    margin: 0 0 12px; font-size: 17px; line-height: 1.9;
+    text-wrap: balance;
+  }
+  .worry-to { margin: 0 0 24px; font-size: 15px; line-height: 1.7; letter-spacing: .08em; color: var(--gold); }
+  .title { font-family: var(--serif-display); margin: 0; }
+  .hero .title, .hero .subtitle, .hero .worry { text-shadow: 0 0 22px rgba(10,15,24,.85), 0 1px 6px rgba(10,15,24,.75); }
+  .title br { display: none; }
+  .title .t1 {
+    display: block; font-weight: 700; color: var(--ivory);
+    font-size: clamp(1.5rem, 6.2vw, 2.5rem); line-height: 1.3; letter-spacing: .04em;
+  }
+  .title .t2 {
+    display: block; font-weight: 800; color: var(--gold);
+    font-size: clamp(2.625rem, 12vw, 5rem); line-height: 1.15; letter-spacing: .02em;
+    white-space: nowrap;
+  }
+  .rule-thick { width: 100%; height: 0; margin: 20px auto; border: 0; border-top: 2px solid var(--gold); }
+  .subtitle {
+    font-family: var(--serif-display); font-weight: 700;
+    font-size: clamp(1.5rem, 6.4vw, 2.5rem); line-height: 1.45; letter-spacing: .02em;
+    max-width: 16em; margin: 0 auto 24px; word-break: normal;
+  }
+  .subtitle span { display: inline-block; }
+  .speaker {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin: 0 0 20px; font-size: 15px; line-height: 1.6; color: var(--ivory-sub); font-weight: 400;
+    text-align: left;
+  }
+  .speaker-photo {
+    flex: 0 0 auto; width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+    box-shadow: 0 0 0 1px rgba(214,166,92,.7);
+  }
+
+  /* FVの登場（CSSのみ。ブラケットは動かさない） */
+  @keyframes fv-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .wrap--hero > * { animation: fv-in 600ms var(--ease-out) both; }
+  .wrap--hero > .label      { animation-delay: 0ms; }
+  .wrap--hero > .worry      { animation-delay: 80ms; }
+  .wrap--hero > .worry-to   { animation-delay: 160ms; }
+  .wrap--hero > .title      { animation-delay: 240ms; }
+  .wrap--hero > .rule-thick { animation-delay: 320ms; }
+  .wrap--hero > .subtitle   { animation-delay: 400ms; }
+  .wrap--hero > .speaker    { animation-delay: 480ms; }
+  .wrap--hero > .cta        { animation-delay: 560ms; }
+
+  /* ===== CTA（ページ内3か所＋固定バー。文言はすべて同一） ===== */
+  .cta { text-align: center; }
+  .cta-btn {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; max-width: 520px; margin: 0 auto; min-height: 60px;
+    padding: 16px 28px;
+    font-family: var(--serif-display); font-weight: 700;
+    font-size: clamp(1rem, 4.3vw, 1.0625rem); letter-spacing: .08em; line-height: 1.4;
+    color: #0A0F18; background: var(--gold);
+    border: 0; border-radius: 999px; text-decoration: none; box-shadow: none; cursor: pointer;
+    transition: background-color 200ms ease-out, transform 150ms ease-out;
+  }
+  .cta-btn:hover { background: var(--gold-hover); }
+  .cta-btn:active { transform: translateY(1px); }
+  .cta-btn:focus-visible { outline: 3px solid var(--ivory); outline-offset: 3px; }
+  .cta-note { margin: 12px 0 0; font-size: 15px; line-height: 1.7; color: var(--ivory-sub); font-weight: 400; }
+
+  .cta-band { padding: 56px 0; }
+
+  /* 固定CTAバー: 初期は hidden。JSが FV のCTAを過ぎたら .is-shown */
+  .bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    background: rgba(10,15,24,.94);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(214,166,92,.45);
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    transform: translateY(100%); visibility: hidden;
+    transition: transform 250ms ease-out, visibility 0s linear 250ms;
+    pointer-events: none;
+  }
+  .bar.is-shown { transform: none; visibility: visible; transition: transform 250ms ease-out, visibility 0s; }
+  .bar-inner { max-width: 880px; margin: 0 auto; }
+  .bar .cta-btn { min-height: 48px; max-width: none; padding: 10px 20px; font-size: 15px; pointer-events: auto; }
+
+  /* ===== 2. 分かること（金の枠＋四隅ブラケット、①②③、点線区切り） ===== */
+  .learn-box {
+    border: 1px solid var(--gold-line); padding: 8px 20px; margin: 0 8px;
+  }
+  .learn-box > .bk-out { position: absolute; inset: -8px; pointer-events: none; }
+  .learn-box.bracketed::before { top: -8px; left: -8px; }
+  .learn-box.bracketed::after  { top: -8px; right: -8px; }
+  .learn { list-style: none; margin: 0; padding: 0; }
+  .learn > li { display: grid; grid-template-columns: 36px 1fr; gap: 0 12px; padding: 24px 0; }
+  .learn > li + li { border-top: 1px dotted var(--gold-dot); }
+  .learn > li > div { min-width: 0; }
+  .learn .mark {
+    font-family: var(--serif-display); font-weight: 700; font-size: 28px; line-height: 1.1;
+    color: var(--gold); text-align: center;
+  }
+  .learn h3 { line-height: 1.55; }
+  /* スマホ: 丸数字を見出しの上に置き、本文を全幅で読ませる（左の数字の列が本文を細くするため） */
+  @media (max-width: 639px) {
+    .learn-box { padding: 8px 16px; margin: 0 4px; }
+    .learn > li { grid-template-columns: 1fr; gap: 4px 0; }
+    .learn .mark { text-align: left; }
+  }
+  .learn p { margin-bottom: 0; }
+  .learn--four h3 { font-size: 19px; line-height: 1.7; }
+  .strength {
+    margin: 48px 0 24px; padding: 28px 0;
+    border-top: 1px dotted var(--gold-dot); border-bottom: 1px dotted var(--gold-dot);
+    font-family: var(--serif-display); font-weight: 700;
+    font-size: 20px; line-height: 1.8; letter-spacing: .03em; text-align: center;
+  }
+
+  /* ===== 3. 概要（券のカード） ===== */
+  .ticket { background: var(--bg); border: 1px solid var(--gold-line); padding: 8px 24px; }
+  .ticket dl { margin: 0; }
+  .ticket .row {
+    display: grid; grid-template-columns: 6.2em 1fr; gap: 12px; align-items: baseline;
+    padding: 16px 0; border-top: 1px dotted var(--gold-dot);
+  }
+  .ticket .row:first-child { border-top: 0; }
+  .ticket dt { color: var(--gold); font-size: 14px; letter-spacing: .15em; line-height: 1.8; font-weight: 500; }
+  .ticket dd {
+    margin: 0; min-width: 0;
+    font-family: var(--serif-display); font-weight: 700; font-size: 18px; line-height: 1.6;
+  }
+  .ticket .honest { padding: 20px 0 16px; border-top: 1px solid var(--gold-line); }
+  .ticket .honest p { margin: 0; font-size: 16px; font-weight: 500; color: var(--ivory); }
+  .ticket .honest p + p { margin-top: 8px; }
+
+  /* ===== 4. 流れ（44pxの円＋点線でつなぐ。カード枠なし） ===== */
+  .steps { list-style: none; margin: 0; padding: 0; }
+  .steps li { position: relative; display: grid; grid-template-columns: 44px 1fr; gap: 0 16px; padding-bottom: 40px; }
+  .steps li:last-child { padding-bottom: 0; }
+  .steps .num {
+    display: flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border: 1px solid var(--gold); border-radius: 50%;
+    font-family: var(--serif-display); font-weight: 700; font-size: 20px; line-height: 1;
+    color: var(--gold); background: var(--bg); position: relative; z-index: 1;
+  }
+  .steps li:not(:last-child)::after {
+    content: ""; position: absolute; left: 21.5px; top: 52px; bottom: 8px;
+    border-left: 1px dotted var(--gold-dot);
+  }
+  .steps li > div { min-width: 0; }
+  .steps h3 { padding-top: 6px; }
+  .steps p { margin-bottom: 0; }
+
+  /* ===== 6. 合う方、合わない方（1つの金の枠の中に2つの半分） ===== */
+  .fit-box { border: 1px solid var(--gold-line); }
+  .fit-group { padding: 28px 24px; }
+  .fit-group + .fit-group { border-top: 1px dotted var(--gold-dot); }
+  .fit-group h3 { margin-bottom: 4px; }
+  .fit-after { margin-top: 32px; }
+
+  /* ===== 7. プロフィール ===== */
+  .profile { display: grid; grid-template-columns: 1fr; justify-items: center; gap: 0; }
+  .profile > div { min-width: 0; width: 100%; }
+  .profile .photo {
+    width: 136px; height: 136px; border-radius: 50%; object-fit: cover; display: block;
+    background: var(--line-dark);
+    outline: 1px solid rgba(214,166,92,.7); outline-offset: 6px;
+    margin: 8px 0 32px;
+  }
+  .name {
+    font-family: var(--serif-display); font-weight: 800; font-size: 30px; line-height: 1.4;
+    letter-spacing: .08em; margin: 0 0 28px; text-align: center;
+  }
+  .role { margin: 4px 0 28px; font-size: 14px; line-height: 1.7; letter-spacing: .15em; color: var(--gold); text-align: center; }
+
+  /* ===== 8. ご登録の前に（最も静か） ===== */
+  .notes-body h3 {
+    font-family: var(--serif-text); font-weight: 500;
+    font-size: 14px; line-height: 1.7; letter-spacing: .15em; color: var(--gold);
+    margin: 0 0 6px;
+  }
+  .notes-item + .notes-item { margin-top: 28px; }
+  .notes-body p { font-size: 15px; line-height: 1.8; color: var(--ivory-sub); font-weight: 400; margin: 0; }
+  .notes a, .links a { color: var(--ivory); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+  .links { list-style: none; padding: 0; margin: 32px 0 0; display: flex; flex-wrap: wrap; gap: 0 28px; font-size: 15px; }
+  .links a { display: inline-flex; align-items: center; min-height: 44px; }
+
+  /* 画像を入れる場合の枠（SLIDE_SLOT 用。今は使わない） */
+  .shot { margin: 24px 0 0; }
+  .shot img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--gold-line); }
+  .shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.6; color: var(--ivory-sub); }
+
+  /* ===== 9. 締め＋CTA（FVと同じ層構造） ===== */
+  .closing {
+    position: relative; isolation: isolate; overflow: hidden;
+    padding: 72px 0;
+    background: radial-gradient(120% 70% at 50% 100%, #14202F 0%, #0A0F18 60%);
+    border-top: 1px solid var(--gold-faint);
+  }
+  .closing .hero-bg img { object-position: center bottom; }
+  .closing > .hero-shade { background: rgba(10,15,24,.92); }
+  .closing .frame { margin: 0 12px; padding: 56px 8px; }
+  .closing-text {
+    font-family: var(--serif-display); text-align: center; margin: 0 0 40px;
+  }
+  .closing-text br { display: none; }
+  .closing-text .c1 > span { display: inline-block; }
+  .closing-text .c1 { display: block; font-weight: 700; font-size: 24px; line-height: 1.6; letter-spacing: .04em; }
+  .closing-text .c2 {
+    display: block; font-weight: 800; color: var(--gold);
+    font-size: clamp(2.125rem, 9vw, 3rem); line-height: 1.4; letter-spacing: .03em; margin-top: 8px;
+  }
+
+  footer {
+    padding: 32px 0 56px; text-align: center; font-size: 14px; line-height: 1.7;
+    color: var(--ivory-sub); font-weight: 400; border-top: 1px solid var(--gold-faint);
+  }
+  footer p { margin: 0; }
+
+  /* ===== 節の出現（JSがあるときだけ。一度だけ） ===== */
+  html.js .reveal { opacity: 0; transform: translateY(12px); transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out); }
+  html.js .reveal.is-in { opacity: 1; transform: none; }
+
+  /* ===== 小さい幅（360px級）: 画像帯 → 悩み → 副題 の順に詰める。文は削らない ===== */
+  @media (max-width: 374px) {
+    .frame { padding-top: 72px; }
+    .worry { font-size: 16px; line-height: 1.8; }
+    .subtitle { font-size: 26px; }
+    .wrap--hero { padding: 0 8px; }
+  }
+
+  /* ===== PC ===== */
+  @media (min-width: 760px) {
+    :root { --bk: 36px; }
+    body { font-size: 17px; }
+    body.has-bar { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+    .sec { padding: 96px 0; }
+    .cta-band { padding: 72px 0; }
+    h3 { font-size: 20px; }
+
+    .hero { padding: 0 40px; }
+    .frame { max-width: 960px; margin: 0 auto; padding: 112px 40px 64px; }
+    .label { font-size: 14px; }
+    .label::before, .label::after { flex-basis: 32px; }
+    .worry { font-size: 19px; }
+    .worry-to { font-size: 16px; }
+    .rule-thick { margin: 28px auto; }
+    .subtitle { max-width: none; line-height: 1.35; }
+    .speaker-photo { width: 56px; height: 56px; }
+    .cta-btn { min-height: 64px; font-size: 18px; }
+    .bar .cta-btn { max-width: 440px; font-size: 16px; }
+
+    .learn-box { padding: 16px 48px; margin: 0; }
+    .learn > li { grid-template-columns: 44px 1fr; gap: 0 20px; padding: 32px 0; }
+    .strength { font-size: 24px; line-height: 1.7; }
+
+    .ticket { padding: 12px 40px; }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 32px; position: relative; }
+    .steps::before {
+      content: ""; position: absolute; top: 22px; left: 16%; right: 16%;
+      border-top: 1px dotted var(--gold-dot);
+    }
+    .steps li { display: block; padding-bottom: 0; text-align: center; }
+    .steps li:not(:last-child)::after { content: none; }
+    .steps .num { margin: 0 auto 20px; }
+    .steps h3 { padding-top: 0; margin-bottom: 12px; }
+    .steps p { text-align: left; }
+
+    .fit-box { display: grid; grid-template-columns: 1fr 1fr; }
+    .fit-group { padding: 36px 36px; }
+    .fit-group + .fit-group { border-top: 0; border-left: 1px dotted var(--gold-dot); }
+
+    .profile { grid-template-columns: 200px 1fr; gap: 40px; justify-items: stretch; align-items: start; }
+    .profile .photo { width: 168px; height: 168px; margin: 16px auto 0; }
+    .name, .role { text-align: left; }
+
+    .notes-body { columns: 2; column-gap: 48px; }
+    .notes-item { break-inside: avoid; }
+    .notes-item + .notes-item { margin-top: 0; padding-top: 28px; }
+    .notes-item:first-child { padding-top: 0; }
+
+    .closing { padding: 96px 40px; }
+    .closing .frame { max-width: 960px; margin: 0 auto; padding: 80px 40px; }
+    .closing-text .c1 { font-size: 32px; }
+  }
+
+  /* ===== 動きを減らす設定 ===== */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .wrap--hero > * { opacity: 1; transform: none; }
+    html.js .reveal { opacity: 1; transform: none; }
+    .cta-btn:active { transform: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- ===== 1. ファーストビュー ===== -->
+  <section class="hero" aria-labelledby="seminar-title">
+    <!-- 背景画像①（差し込み式）: assets/hero-pc.webp（2560×1440）。スマホも中央を切り出して同じ画像を使う（縦長の別画像は光の筋が文字に重なり、コントラストが足りなかったため）。無い間は picture ごと外れる -->
+    <picture class="hero-bg" aria-hidden="true">
+      <img src="assets/hero-pc.webp" alt="" width="2560" height="1440" fetchpriority="high" decoding="async"
+           onload="this.closest('section').classList.add('has-bg')"
+           onerror="this.closest('picture').remove()">
+    </picture>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="frame bracketed">
+      <span class="bk" aria-hidden="true"></span>
+      <div class="wrap--hero">
+        <p class="label">無料オンラインセミナー（約30分）</p>
+
+        <p class="worry">AIは一応使っている。<br>でも仕事は去年と同じ。<br>何が足りないのか、自分でも言えない。<br>だから、どこから手をつければいいかも分からない。</p>
+        <p class="worry-to">――そんな中小企業の経営者の方へ。</p>
+
+        <h1 class="title" id="seminar-title"><span class="t1">使うAIから、</span><br><span class="t2">共に働くAIへ</span></h1>
+        <hr class="rule-thick" aria-hidden="true">
+        <!-- 副題: 氏原さん確定（「取り戻す」と言い切らない。セミナーの約束は「見える」まで） -->
+        <p class="subtitle"><span>AIの進化に</span><span>追いつけなかった</span><span>時間の、</span><span>取り戻し方が</span><span>見える30分</span></p>
+
+        <p class="speaker"><img class="speaker-photo" src="assets/profile.jpg" alt="" width="88" height="88" decoding="async"><span>お話しする人：氏原大貴</span></p>
+
+        <!-- CTA（共通部品）: 4か所とも同じ LINE 友だち追加URL -->
+        <div class="cta">
+          <a class="cta-btn" href="https://lin.ee/s6fBuX9" rel="noopener">セミナーのご案内をLINEで受け取る</a>
+          <p class="cta-note">LINEで友だち追加をすると、視聴のご案内が届きます。<br>配信はブロックでいつでも止められます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2. このセミナーで見えてくること ===== -->
+  <section class="sec" aria-labelledby="learn-title">
+    <div class="wrap reveal">
+      <h2 id="learn-title">このセミナーで見えてくること</h2>
+      <div class="learn-box bracketed">
+        <span class="bk bk-out" aria-hidden="true"></span>
+        <ul class="learn learn--four">
+          <li>
+            <span class="mark" aria-hidden="true">①</span>
+            <div>
+              <h3>AIを「相談相手」で終わらせず、一緒に仕事をしてくれる仲間として使うとは、どういうことかが、見えてきます。</h3>
+            </div>
+          </li>
+          <li>
+            <span class="mark" aria-hidden="true">②</span>
+            <div>
+              <h3>自分はなぜAI時代の流れに追いつけなかったのか、理由が明確になります。</h3>
+            </div>
+          </li>
+          <li>
+            <span class="mark" aria-hidden="true">③</span>
+            <div>
+              <h3>AIで自分のやりたいことが加速していく、その道筋が見えてきます。</h3>
+            </div>
+          </li>
+          <li>
+            <span class="mark" aria-hidden="true">④</span>
+            <div>
+              <h3>AIとの付き合い方を、見直すきっかけになります。</h3>
+            </div>
+          </li>
+        </ul>
+        <!-- SLIDE_SLOT -->
+      </div>
+      <p class="strength">見終わる頃には、自分の仕事のどこが止まっているか、たぶん一か所は指させます。<br>手順の話はしません。そこが分かれば、次の一歩は自分で選べるからです。</p>
+      <p class="sub">※セミナーでお見せする実物は、講師個人の体験です。成果をお約束するものではありません。</p>
+    </div>
+  </section>
+
+  <!-- ===== 3. 概要カード ===== -->
+  <section class="sec sec--surface" aria-labelledby="outline-title">
+    <div class="wrap reveal">
+      <h2 id="outline-title">セミナーの概要</h2>
+      <div class="ticket">
+        <dl>
+          <div class="row"><dt>形式</dt><dd>オンライン（録画）</dd></div>
+          <div class="row"><dt>時間</dt><dd>約30分</dd></div>
+          <div class="row"><dt>参加費</dt><dd>無料</dd></div>
+          <div class="row"><dt>視聴期間</dt><dd>登録から48時間</dd></div>
+          <div class="row"><dt>受け取り</dt><dd>友だち追加のあと、LINEに自動で届きます</dd></div>
+        </dl>
+        <div class="honest">
+          <p>セミナーの後半で、有料講座のご案内があります。ご案内を聞いてから決めていただけます。</p>
+          <p>お申し込みの受付も、登録から48時間です。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. ご覧いただく流れ ===== -->
+  <section class="sec" aria-labelledby="flow-title">
+    <div class="wrap wrap--wide reveal">
+      <h2 id="flow-title">ご覧いただく流れ</h2>
+      <ol class="steps">
+        <li>
+          <span class="num" aria-hidden="true">1</span>
+          <div>
+            <h3>LINEで友だち追加</h3>
+            <p>下のボタンから、LINEの友だち追加をしてください。メールアドレスの入力はありません。</p>
+          </div>
+        </li>
+        <li>
+          <span class="num" aria-hidden="true">2</span>
+          <div>
+            <h3>すぐに視聴のご案内が届きます</h3>
+            <p>友だち追加のあと、LINEに視聴のご案内が自動で届きます。</p>
+          </div>
+        </li>
+        <li>
+          <span class="num" aria-hidden="true">3</span>
+          <div>
+            <h3>48時間以内にご覧ください</h3>
+            <p>登録から48時間のあいだに、30分ほど時間を取れるときに、落ち着いてご覧ください。合わなければ、途中で閉じていただいて構いません。</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== 5. CTA（2か所目。1か所目と同じ部品・同じ文言） ===== -->
+  <section class="cta-band sec--surface" aria-label="お申し込み">
+    <div class="wrap">
+      <div class="cta" data-cta="inline">
+        <a class="cta-btn" href="https://lin.ee/s6fBuX9" rel="noopener">セミナーのご案内をLINEで受け取る</a>
+        <p class="cta-note">LINEで友だち追加をすると、視聴のご案内が届きます。<br>配信はブロックでいつでも止められます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6. 合う方、合わない方 ===== -->
+  <section class="sec" aria-labelledby="fit-title">
+    <div class="wrap wrap--wide reveal">
+      <h2 id="fit-title">合う方、合わない方</h2>
+      <div class="fit-box">
+        <div class="fit-group">
+          <h3>合うのは、こんな方です</h3>
+          <ul class="dots">
+            <li>見終わったあとで、一度は自分の手で動かしてみようと思える方</li>
+            <li>自分の事業のことを、自分の言葉で伝えたい方</li>
+            <li>うまくいかなくても、もう一度だけ試してみる気持ちが残っている方</li>
+          </ul>
+        </div>
+        <div class="fit-group">
+          <h3>向いていないかもしれない方</h3>
+          <ul class="dots">
+            <li>全部をお任せで済ませたい方</li>
+            <li>考えるところまで、AIに代わってほしい方</li>
+          </ul>
+        </div>
+      </div>
+      <p class="fit-after">お任せの使い方も、ひとつの使い方です。そういう頼み方で十分に回る仕事も、たくさんあると思います。<br>何を選ぶかは、見てから決めていただけたらと思っています。</p>
+    </div>
+  </section>
+
+  <!-- ===== 7. プロフィール ===== -->
+  <section class="sec sec--surface" aria-labelledby="profile-title">
+    <div class="wrap reveal">
+      <h2 id="profile-title">お話しする人</h2>
+      <!-- 写真: 差し替えるときは同じ img の src だけを変える（正方形・顔は中央） -->
+      <div class="profile has-photo">
+        <img class="photo" src="assets/profile.jpg" alt="氏原大貴の写真" width="800" height="800" loading="lazy" decoding="async">
+        <div>
+          <p class="name">氏原大貴</p>
+          <p>病院勤務を経て独立し、整体院などの店舗を経営しています。</p>
+          <p>理学療法士として大切にしてきたのは、代わりに歩くことではなく、自分の足で歩けるようになるまで、隣にいることです。</p>
+          <p>AIの進化に追いつけなかった時間が、私にもありました。AIには長いあいだ「ただの依頼」をしていて、便利なのに事業は前に進みませんでした。手前にあった理由が分かってから、AIは事業を共に伸ばす仲間になりました。このセミナーでは、その実物をお見せします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 8. 注記 ===== -->
+  <section class="sec notes" aria-labelledby="notes-title">
+    <div class="wrap reveal">
+      <h2 id="notes-title">ご登録の前に</h2>
+
+      <div class="notes-body">
+        <div class="notes-item">
+          <h3>参加費・お支払いについて</h3>
+          <p>登録は無料です。クレジットカード情報の入力は必要ありません。</p>
+        </div>
+
+        <div class="notes-item">
+          <h3>配信について</h3>
+          <p>LINEで友だち追加をしていただいた方に、セミナーの視聴のご案内と、関連するご連絡をお送りします。セミナーの後半では、有料講座のご案内があります。</p>
+        </div>
+
+        <div class="notes-item">
+          <h3>配信の止め方</h3>
+          <p>配信は、LINEでこのアカウントをブロックすることで、いつでも止められます。</p>
+        </div>
+
+        <div class="notes-item">
+          <h3>個人情報の取り扱い</h3>
+          <!-- 要確認: LINE公式アカウントで取得する情報の範囲と利用目的の書き方。プライバシーポリシー本文と一致させる -->
+          <p>友だち追加により当方が受け取る情報（LINEの表示名など）は、セミナーのご案内と関連するご連絡のためにのみ使い、法令に基づく場合を除いて第三者に提供しません。詳しくはプライバシーポリシーをご覧ください。</p>
+        </div>
+
+        <div class="notes-item">
+          <h3>お問い合わせ</h3>
+          <p>ujihara0903@gmail.com</p>
+        </div>
+      </div>
+
+      <ul class="links">
+        <li><a href="tokusho.html">特定商取引法に基づく表記</a></li>
+        <li><a href="privacy.html">プライバシーポリシー</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 9. 締め＋CTA（3か所目。同じ部品・同じ文言） ===== -->
+  <section class="closing" aria-label="お申し込み">
+    <!-- 背景画像①'（①のPC画像を下側で再利用）。ファイルが無い間は picture ごと外れる -->
+    <picture class="hero-bg" aria-hidden="true">
+      <img src="assets/hero-pc.webp" alt="" width="2560" height="1440" loading="lazy" decoding="async"
+           onload="this.closest('section').classList.add('has-bg')"
+           onerror="this.closest('picture').remove()">
+    </picture>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="frame bracketed">
+      <span class="bk" aria-hidden="true"></span>
+      <div class="wrap reveal">
+        <p class="closing-text"><span class="c1"><span>使うAIから、</span><span>共に働くAIへ。</span></span><br><span class="c2">決めるのは、あなたです。</span></p>
+        <div class="cta" data-cta="inline" data-cta-last>
+          <a class="cta-btn" href="https://lin.ee/s6fBuX9" rel="noopener">セミナーのご案内をLINEで受け取る</a>
+          <p class="cta-note">LINEで友だち追加をすると、視聴のご案内が届きます。<br>配信はブロックでいつでも止められます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>運営：氏原大貴</p>
+  </div>
+</footer>
+
+<!-- 固定CTAバー（ページ内と同じボタン・同じ文言。注記はページ内の3か所にある） -->
+<div class="bar" id="cta-bar" hidden>
+  <div class="bar-inner">
+    <a class="cta-btn" href="https://lin.ee/s6fBuX9" rel="noopener">セミナーのご案内をLINEで受け取る</a>
+  </div>
+</div>
+
+<script>
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+
+  /* 節の出現: 一度だけ */
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+  }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+  /* 固定バー: FVのCTAを過ぎたら出す。ページ内CTAが40%以上見えている間・最終CTAより下（フッター）では隠す */
+  var bar = document.getElementById('cta-bar');
+  var heroCta = document.querySelector('.hero .cta');
+  var inline = document.querySelectorAll('[data-cta="inline"]');
+  var lastCta = document.querySelector('[data-cta-last]');
+  var foot = document.querySelector('footer');
+  if (!bar || !heroCta) return;
+  bar.hidden = false;
+  var st = { heroPast: false, inlineOn: {}, lastPast: false, footOn: false };
+  function update() {
+    var anyInline = Object.keys(st.inlineOn).some(function (k) { return st.inlineOn[k]; });
+    var show = st.heroPast && !anyInline && !st.lastPast && !st.footOn;
+    bar.classList.toggle('is-shown', show);
+    document.body.classList.toggle('has-bar', show);
+  }
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) { st.heroPast = !e.isIntersecting && e.boundingClientRect.bottom <= 0; });
+    update();
+  }).observe(heroCta);
+  var ioInline = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      st.inlineOn[e.target.dataset.i] = e.isIntersecting && e.intersectionRatio >= 0.4;
+      if (e.target === lastCta) st.lastPast = !e.isIntersecting && e.boundingClientRect.top < 0;
+    });
+    update();
+  }, { threshold: [0, 0.4] });
+  inline.forEach(function (el, i) { el.dataset.i = i; ioInline.observe(el); });
+  if (foot) new IntersectionObserver(function (es) {
+    es.forEach(function (e) { st.footOn = e.isIntersecting; });
+    update();
+  }).observe(foot);
+})();
+</script>
+</body>
+</html>
